@@ -1,12 +1,8 @@
+# titanic_analysis/categorical_unique_values.py
 import pandas as pd
-from titanic_analysis.data_loader import load_titanic_data
-
-def test_load_titanic_data():
-    # Load data from a sample CSV path
-    df = load_titanic_data("../../data/titanic.csv")
-    
-    # Check if the returned object is a DataFrame
-    assert isinstance(df, pd.DataFrame), "The returned object should be a DataFrame"
-    
-    # Check if the DataFrame is not empty
-    assert not df.empty, "The DataFrame should not be empty"
+def display_unique_values(df: pd.DataFrame, categorical_features: list) -> dict:
+    """Displays unique values for each categorical column."""
+    unique_values = {}
+    for feature in categorical_features:
+        unique_values[feature] = df[feature].unique().tolist()
+    return unique_values
